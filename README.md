@@ -1,15 +1,16 @@
-Parallel-Pathfinding
-====================
-
+<pre>
 Concurrent Pathfinding in a maze
+=================================
 
-Assume you are stuck in a 10x10 maze. So the coordinates run from (0,0) to (9,9). Clearly there are 100 nodes.
+Assume you are stuck in a 10x10 maze. 
+The coordinates run from (0,0) to (9,9), and there are 100 nodes.
 
 Say you start out at (0,2).
 Your destination ? (9,8)
 
 How do you find the shortest way out ?
 And lets say, you can clone yourself!
+
 Sweet, so you can make infinite copies of yourself.
 
 Algorithm: Naive Parallel Pathfinder
@@ -17,18 +18,18 @@ Algorithm: Naive Parallel Pathfinder
 100:
 So long as you haven't arrived at your destination...
 
-At each node, make atmost 8 copies of yourself....you can convince yourself that there are 3 nodes to your left, 
-3 to your right, 1 above & 1 below you.
+At each node, make atmost 8 copies of yourself.
+( you can convince yourself that there are 3 nodes to your left, 3 to your right, 1 above & 1 below you. )
 
 Some of these nodes cannot be visited ( because they are outside the maze boundary)
 Some of these nodes should not be revisited. ( because you've already been there )
+Some of these nodes are not at the shortest distance from you ( for some definition of shortest )
 So filter those out, and get a set of valid candidates.
 
-Further, filter those candidates who are at the shortest minkowski distance from you, for some metric ( say Euclidean )
 What do you do with these candidates ?
 For each one of them, GOTO 100
 
-Fin
+Fin!
 ---------
 
 Performance: Not rigorous, but 500,000 - 800,000 clones of yourself seems to be enough to get out of the maze.
